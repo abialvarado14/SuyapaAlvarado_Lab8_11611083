@@ -7,6 +7,8 @@ class Real{
 
 public:
 	Real();
+	virtual string Sumar(Real*);
+	virtual string SumarIntDou(int, double);
 
 
 };

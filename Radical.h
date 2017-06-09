@@ -15,6 +15,8 @@ public:
 	int getCoeficiente();
 	int getRadicando();
 	int getIndice();
+	virtual string Sumar(Real*);
+	virtual string SumarIntDou(int, double);
 
 
 };

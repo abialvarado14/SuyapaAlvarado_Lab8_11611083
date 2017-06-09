@@ -22,4 +22,12 @@ int Radical::getIndice(){
 return Indice;
 }
 
+string Radical::Sumar(Real* num){
+
+}
+
+string Radical::SumarIntDou(int num, double num1){
+	
+}
+
 
