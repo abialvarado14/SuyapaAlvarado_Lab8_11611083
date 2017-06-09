@@ -8,7 +8,8 @@
 int main (){
 	char resp = 's';
 	int radicando, coeficiente, indice, numerador, denominador;
-	vector <Real*> numeros;
+	vector <Radical*> Radicales;
+	vector <Racional*> Racionales;
 
 	cout << "------NUMEROS RADICALES Y RACIONALES----\n\n";
 
@@ -27,7 +28,7 @@ int main (){
 				cout << "Ingrese indice: ";
 				cin >> indice;
 				Radical* rad = new Radical(coeficiente, radicando, indice);
-				numeros.push_back(rad);
+				Radicales.push_back(rad);
 
 				cout << "RADICAL CREADO!!!" << endl;
 
@@ -42,35 +43,54 @@ int main (){
 				cout << "\nIngrese Denominador: ";
 				cin >> denominador;
 				Racional* rac = new Racional(numerador, denominador);
-				numeros.push_back(rac);
-				Racional* rac2 = new Racional (3,4);
-				rac->Sumar(rac2);
+				Racionales.push_back(rac);
 				cout << "RACIONAL AGREGADO!!!"<< endl;
 
 			break;
 			}//FIN CASE 2, AGREGAR RADICAL
 
 			case 3:{
-				int op, op2;
+				int op, op2, pos1, pos2;
+				string respuesta;
 
-				cout << "Que tipo desea sumar?\n1.Racionales\n2.Radicales" << endl;
+				cout << "\nQue tipo desea sumar?\n1.Racionales\n2.Radicales" << endl;
 				cin >> op;
+	
 				if (op==1){
-					cout << "Con que lo desea sumar? \n1.Elemento del vector\n2.Entero o Decimal: ";
+					for (int i = 0; i < Racionales.size(); ++i)
+						{
+							cout << i << " Numerador: " << Racionales[i]->getNumerador() << " Denominador: " << Racionales[i]->getDenominador() << endl;
+						}
+
+					cout << "\nQue posicion desea sumar?: ";
+					cin >> pos1;
+
+					cout << "\nCon que lo desea sumar? \n1.Elemento del vector de Radicales\n2.Elemento del vector de Racionales\n2.Entero o Decimal: ";
 					cin >> op2;
 
 					if (op2==1){
-						
+						for (int i = 0; i < Radicales.size(); ++i)
+						{
+							cout << "pos: " << i << " Coeficiente: " << Radicales[i]->getCoeficiente() << " Radicando: " << Radicales[i]->getRadicando() << " Indice: " << Radicales[i]->getIndice() << endl;
+						}
+
+						cout << "\nEscoja una posicion:";
+						cin >> pos2;
+
+						respuesta = Racionales[pos1]->Sumar(Radicales[pos2]);
+						cout << "La respuesta es: " << respuesta;
+
+
+
 					}//FIN OPERACION CON REALES
 				}//FIN RACIONALES
-
+			break;
 			}
 
 		}//FIN SWITCH
 
 
 
-		cout << "El size es: " << numeros.size();
 		cout << endl << "Desea continuar en el programa? (s/n): ";
 		cin >> resp;
 	}//fin while
