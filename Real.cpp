@@ -25,5 +25,9 @@ string Real::Dividir(Real* num){
 }
 
 string Real::DividirInt(int num){
+
+}
+
+string Real::Multiplicar(Real*, int){
 	
 }

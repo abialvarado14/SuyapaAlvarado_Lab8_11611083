@@ -210,4 +210,56 @@ string Radical::DividirInt(int num){
 
 }
 
+string Radical::Multiplicar(Real* num , int digito){
+	int coef;
+	string respuesta;
+	stringstream ss, s1, s2,s3,s4,s5, convert3, convert2, convert;
+	if (typeid(*num)==typeid(Radical) && digito !=3){
+		Radical* r= reinterpret_cast<Radical*>(num);
+		if(this->Indice==r->getIndice()){
+			coef = this->Coeficiente * r->getCoeficiente();
+			ss << coef;
+			s1 << this->Radicando * r->getRadicando();
+			s2 << this->Indice;
+			respuesta = " (" + ss.str() + ")(" + s1.str() + ")^(" + "1/" + s2.str() + ") ";  
+
+		}else{
+			coef = this->Coeficiente * r->getCoeficiente();
+			ss << coef;
+			s1 << this->Radicando;
+			s3 << r->getIndice();
+			s4 << r->getRadicando();
+			s5 << this->Indice;
+			s2 << this->Indice * r->getIndice();
+			respuesta = " (" + ss.str() + ")(" + s1.str() + ")^(" + s3.str() +"/" + s2.str() + ") "+ " ("+ s4.str()+ ")^("+ s5.str()+"/"+s2.str() ;  
+			
+		}
+	}else if (typeid(*num)==typeid(Racional) && digito !=3){
+		Racional* rac= reinterpret_cast<Racional*>(num);
+		int num1, indice, radicando, coeficiente, numer, denom;
+           		num1 = rac->getNumerador();
+           		numer = rac->getNumerador()* this->getCoeficiente();
+           		denom = rac->getDenominador();
+           		indice = this->getIndice();
+           		radicando = this->getRadicando();
+           		convert << numer;//COEFICIENTE
+           		ss << denom;//DENOMINADOR
+           		s2 << num1;//NUMERADOR, 
+           		convert2 << indice;
+           		convert3 << radicando;
+           		respuesta = "((" + convert.str() + ") " + " (" + convert3.str() + ") " + " ^" + " ( " + "1/" + convert2.str() + " ) " +")/" + ss.str();
+	}
+	else if(digito==3){
+		int numero;
+        cout << "Ingrese el entero con el que lo desea multiplicar: ";
+        cin >> numero;
+		coef = this->Coeficiente * numero;
+			ss << coef;
+			s1 << this->Radicando ;
+			s2 << this->Indice;
+			respuesta = " (" + ss.str() + ")(" + s1.str() + ")^(" + "1/" + s2.str() + ") ";  
+	}
+	return respuesta;
+
+}
 

@@ -193,5 +193,52 @@ string Racional::DividirInt(int num){
     return respuesta;
 }
 
+string Racional::Multiplicar(Real* num,int digito){
+  string tipo, respuesta;
+  stringstream convert;
+  stringstream ss;
+  stringstream s2;
+  stringstream convert2, convert3, convert4;
+  int numer, denom;   
+
+
+
+          if (typeid(*num)==typeid(Racional) && digito != 3){
+              Racional* r= reinterpret_cast<Racional*>(num);                 
+                numer = this->Numerador * r->getNumerador();
+                denom = this->getDenominador() * r->getDenominador();
+                convert << numer;
+                ss << denom;
+                respuesta = convert.str() + "/" + ss.str();
+        
+            //Multiplicacion CON RADICALES  
+           }else if (typeid(*num)==typeid(Radical)){
+              Radical* rad= reinterpret_cast<Radical*>(num);
+              int num1, indice, radicando, coeficiente;
+              num1 = this->getNumerador();
+              numer = this->getNumerador() * rad->getCoeficiente();
+              denom = this->getDenominador();
+              indice = rad->getIndice();
+              radicando = rad->getRadicando();
+              convert << numer;//COEFICIENTE
+              ss << denom;//DENOMINADOR
+              s2 << num1;//NUMERADOR, 
+              convert2 << indice;
+              convert3 << radicando;
+              respuesta = "((" + convert.str() + ") " + " (" + convert3.str() + ") " + " ^" + " ( " + "1/" + convert2.str() + " ) " + ") /" + ss.str();
+           }else if(digito==3){
+              int numero;
+              cout << "Ingrese el entero con el que lo desea multiplicar: ";
+              cin >> numero;
+              numer = this->Numerador * numero;
+              denom = this->getDenominador();
+              convert << numer;
+              ss << denom;
+              respuesta = convert.str() + "/" + ss.str();
+           }
+
+           return respuesta;
+}
+
 
 

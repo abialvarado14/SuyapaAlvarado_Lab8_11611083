@@ -18,9 +18,10 @@ public:
 	virtual string Sumar(Real*);
 	virtual string SumarIntDou(int, double);
 	virtual string Restar(Real*);
-	virtual string RestarInt(int num);
+	virtual string RestarInt(int);
 	virtual string Dividir(Real*);
-	virtual string DividirInt(int num);
+	virtual string DividirInt(int);
+	virtual string Multiplicar(Real*, int);
 
 
 };
