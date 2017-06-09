@@ -38,7 +38,6 @@ string Racional::Sumar(Real* num){
 	stringstream s2;
 	stringstream convert2, convert3, convert4;
 	int numer, denom;
-	 tipo=typeid(num).name();
 	 		//SUMA DE FRACCIONES
             if (typeid(*num)==typeid(Racional)){
             	Racional* r= reinterpret_cast<Racional*>(num);
@@ -58,7 +57,6 @@ string Racional::Sumar(Real* num){
 
            	//SUMA CON RADICALES	
            }else if (typeid(*num)==typeid(Radical)){
-           		cout << "HOLAAAAAAAAAAAAAAAAAA";
            		Radical* rad= reinterpret_cast<Radical*>(num);
            		int num1, indice, radicando, coeficiente;
            		num1 = this->getNumerador();
@@ -78,18 +76,110 @@ string Racional::Sumar(Real* num){
                       
       }
 string Racional::SumarIntDou(int num, double num1){
-	/*int numer, denom;
+	int numer, denom;
 	stringstream ss;
 	stringstream convert;
 	string respuesta;
-
-	numer = (this->Numerador*1)+(this->Denominador*num1);
+	numer = (this->Numerador*1)+(this->Denominador*num);
     denom = this->getDenominador()*1;
     convert << numer;
     ss << denom;
     respuesta = convert.str() + "/" + ss.str();	
 
-    return respuesta;*/
+    return respuesta;
+
+}
+
+string Racional::Restar(Real* num){
+	string tipo, respuesta;
+	stringstream convert;
+	stringstream ss;
+	stringstream s2;
+	stringstream convert2, convert3, convert4;
+	int numer, denom;
+	 		//RESTA DE FRACCIONES
+            if (typeid(*num)==typeid(Racional)){
+            	Racional* r= reinterpret_cast<Racional*>(num);
+
+           		if (this->Denominador == r->getDenominador()){			
+           			numer = this->Numerador - r->getNumerador();
+           			convert << numer;
+           			ss << r->getDenominador();
+           			respuesta = convert.str() + "/" + ss.str();
+           		}else{
+           			numer = (this->Numerador*r->getDenominador())-(this->Denominador*r->getNumerador());
+           			denom = this->getDenominador()*r->getDenominador();
+           			convert << numer;
+           			ss << denom;
+           			respuesta = convert.str() + "/" + ss.str();
+           		}
+			}else if (typeid(*num)==typeid(Radical)){
+           		Radical* rad= reinterpret_cast<Radical*>(num);
+           		int num1, indice, radicando, coeficiente;
+           		num1 = this->getNumerador();
+           		numer = this->getDenominador()* rad->getCoeficiente();
+           		denom = this->getDenominador();
+           		indice = rad->getIndice();
+           		radicando = rad->getRadicando();
+           		convert << numer;//COEFICIENTE
+           		ss << denom;//DENOMINADOR
+           		s2 << num1;//NUMERADOR, 
+           		convert2 << indice;
+           		convert3 << radicando;
+           		respuesta = "((" + convert.str() + ") " + " (" + convert3.str() + ") " + " ^" + " ( " + "1/" + convert2.str() + " ) " + " - " + s2.str() +") /" + ss.str();
+           }
+		return respuesta;
+}
+
+string Racional::RestarInt(int num){
+	int numer, denom;
+	stringstream ss;
+	stringstream convert;
+	string respuesta;
+	numer = (this->Numerador*1)-(this->Denominador*num);
+    denom = this->getDenominador()*1;
+    convert << numer;
+    ss << denom;
+    respuesta = convert.str() + "/" + ss.str();	
+
+    return respuesta;
+}
+
+string Racional::Dividir(Real* num){
+	string tipo, respuesta;
+	stringstream convert;
+	stringstream ss;
+	stringstream s2;
+	stringstream convert2, convert3, convert4;
+	int numer, denom;
+
+	if (typeid(*num)==typeid(Racional)){
+         Racional* r= reinterpret_cast<Racional*>(num);
+
+           		numer = this->Numerador * r->getDenominador();
+           		convert << numer;
+           		ss << r->getNumerador()*this->Denominador;
+    	   		respuesta = convert.str() + "/" + ss.str();
+           		
+			}else if (typeid(*num)==typeid(Radical)){
+           		Radical* rad= reinterpret_cast<Radical*>(num);
+           		int num1, indice, radicando, coeficiente;
+           		num1 = this->getNumerador();
+           		numer = this->getNumerador();
+           		denom = this->getDenominador()*rad->getCoeficiente();
+           		indice = rad->getIndice();
+           		radicando = rad->getRadicando();
+           		convert << numer;//COEFICIENTE
+           		ss << denom;//DENOMINADOR
+           		s2 << num1;//NUMERADOR, 
+           		convert2 << indice;
+           		convert3 << radicando;
+           		respuesta = "((" + convert.str() + ")/ " + " (" + convert3.str() + ") " + " ^" + " ( " + "1/" + convert2.str() + " ) " +")(" + ss.str() + ")";
+           }
+		return respuesta;
+}
+
+string Racional::DividirInt(int num){
 
 }
 

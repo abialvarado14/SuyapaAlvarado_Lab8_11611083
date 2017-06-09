@@ -16,6 +16,9 @@ public:
 	int getDenominador();
 	virtual string Sumar(Real*);
 	virtual string SumarIntDou(int, double);
-	//virtual int suma();
+	virtual string Restar(Real*);
+	virtual string RestarInt(int);
+	virtual string Dividir(Real*);
+	virtual string DividirInt(int);
 
 };
