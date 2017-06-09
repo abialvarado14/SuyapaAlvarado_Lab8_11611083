@@ -83,8 +83,8 @@ int main (){
 
 						respuesta = Racionales[pos1]->Sumar(Radicales[pos2]);
 						cout << "La respuesta es: " << respuesta;
-						fichero << cont << " (" << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos2]->getDenominador() << "< + > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")(1/"+Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
-
+						fichero << cont << " (" << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< + > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+						cont++;
 
 
 					} else if (op2==2){
@@ -98,13 +98,17 @@ int main (){
 
 						respuesta = Racionales[pos1]->Sumar(Racionales[pos2]);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< + > " << Racionales[pos2] << "/ " << Racionales[pos2] << " = " << respuesta;
+						cont++;
 					}else if (op2==3){
 						int entero;
 						cout << "Ingrese el entero con el que lo desea sumar: ";
 						cin >> entero;
 						respuesta =  Racionales[pos1]->SumarIntDou(entero, 0.0);
 						cout << "La respuesta es: " << respuesta;
-						
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< + > " << entero << " = " << respuesta;
+						cont++;
 					}else{
 						cout << "OPCION INVALIDA";
 					}
@@ -134,6 +138,8 @@ int main (){
 
 							respuesta = Radicales[pos1]->Sumar(Radicales[pos2]);
 							cout << "La respuesta es: " << respuesta;
+							fichero << cont << "( " << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") "<< "< + > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/"+Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+							cont++;
 
 
 
@@ -147,7 +153,9 @@ int main (){
 						cin >> pos2;
 
 						respuesta = Radicales[pos1]->Sumar(Racionales[pos2]);
-						cout << "La respuesta es: " << respuesta;					
+						cout << "La respuesta es: " << respuesta;	
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< + >" << " (" << Racionales[pos2]->getNumerador() << "/ " << Racionales[pos2]->getDenominador() << ") = " << respuesta << endl;
+						cont++;				
 						
 					}else{
 						int entero;
@@ -156,6 +164,9 @@ int main (){
 						cout << Radicales.size();
 						respuesta =  Radicales[pos1]->SumarIntDou(entero, 0.0);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< + >" << entero << "= " << respuesta;
+						cont++; 
 						
 					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES
 
@@ -196,6 +207,9 @@ int main (){
 						respuesta = Racionales[pos1]->Restar(Radicales[pos2]);
 						cout << "La respuesta es: " << respuesta;
 
+						fichero << cont << " (" << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< - > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+						cont++;
+
 
 
 					} else if (op2==2){
@@ -209,12 +223,18 @@ int main (){
 
 						respuesta = Racionales[pos1]->Restar(Racionales[pos2]);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< - > " << Racionales[pos2] << "/ " << Racionales[pos2] << " = " << respuesta;
+						cont++;
 					}else{
 						int entero;
 						cout << "Ingrese el entero con el que lo desea restar: ";
 						cin >> entero;
 						respuesta =  Racionales[pos1]->RestarInt(entero);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< - > " << entero << " = " << respuesta;
+						cont++;
 						
 					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES RESTA
 				}else if (op==2){
@@ -241,6 +261,9 @@ int main (){
 							respuesta = Radicales[pos1]->Restar(Radicales[pos2]);
 							cout << "La respuesta es: " << respuesta;
 
+							fichero << cont << "( " << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") "<< "< - > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/"+Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+							cont++;
+
 
 
 					} else if (op2==2){
@@ -253,7 +276,10 @@ int main (){
 						cin >> pos2;
 
 						respuesta = Radicales[pos1]->Restar(Racionales[pos2]);
-						cout << "La respuesta es: " << respuesta;					
+						cout << "La respuesta es: " << respuesta;	
+
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< - >" << " (" << Racionales[pos2]->getNumerador() << "/ " << Racionales[pos2]->getDenominador() << ") = " << respuesta << endl;
+						cont++;					
 						
 					}else{
 						int entero;
@@ -262,6 +288,9 @@ int main (){
 						cout << Radicales.size();
 						respuesta =  Radicales[pos1]->RestarInt(entero);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< - >" << entero << "= " << respuesta;
+						cont++; 
 						
 					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES
 
@@ -302,6 +331,9 @@ int main (){
 						respuesta = Racionales[pos1]->Dividir(Radicales[pos2]);
 						cout << "La respuesta es: " << respuesta;
 
+						fichero << cont << " (" << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< / > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+						cont++;
+
 
 
 					} else if (op2==2){
@@ -315,12 +347,19 @@ int main (){
 
 						respuesta = Racionales[pos1]->Dividir(Racionales[pos2]);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< / > " << Racionales[pos2] << "/ " << Racionales[pos2] << " = " << respuesta;
+						cont++;
+
 					}else{
 						int entero;
 						cout << "Ingrese el entero con el que lo desea dividir: ";
 						cin >> entero;
 						respuesta =  Racionales[pos1]->DividirInt(entero);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos1]->getDenominador() << "< / > " << entero << " = " << respuesta;
+						cont++;
 					}//FIN OPERACION DIVISION RADICALES	
 
 					}else if (op==2){
@@ -348,6 +387,9 @@ int main (){
 							respuesta = Radicales[pos1]->Dividir(Radicales[pos2]);
 							cout << "La respuesta es: " << respuesta;
 
+							fichero << cont << "( " << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos2]->getIndice() << ") "<< "< / > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")^(1/"+Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
+							cont++;
+
 
 
 					} else if (op2==2){
@@ -360,7 +402,10 @@ int main (){
 						cin >> pos2;
 
 						respuesta = Radicales[pos1]->Dividir(Racionales[pos2]);
-						cout << "La respuesta es: " << respuesta;					
+						cout << "La respuesta es: " << respuesta;	
+
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< / >" << " (" << Racionales[pos2]->getNumerador() << "/ " << Racionales[pos2]->getDenominador() << ") = " << respuesta << endl;
+						cont++;					
 						
 					}else{
 						int entero;
@@ -369,6 +414,9 @@ int main (){
 						cout << Radicales.size();
 						respuesta =  Radicales[pos1]->DividirInt(entero);
 						cout << "La respuesta es: " << respuesta;
+
+						fichero << cont  << " (" << Radicales[pos1]->getCoeficiente() << ")(" << Radicales[pos1]->getRadicando() << ")^(1/" << Radicales[pos1]->getIndice() << "< / >" << entero << "= " << respuesta;
+						cont++; 
 						
 					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES
 
