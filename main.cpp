@@ -4,12 +4,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 int main (){
 	char resp = 's';
+	ofstream fichero;
 	int radicando, coeficiente, indice, numerador, denominador;
 	vector <Radical*> Radicales;
 	vector <Racional*> Racionales;
+	int cont = 0;
+	fichero.open("operaciones.txt");
 
 	cout << "------NUMEROS RADICALES Y RACIONALES----\n\n";
 
@@ -79,6 +83,7 @@ int main (){
 
 						respuesta = Racionales[pos1]->Sumar(Radicales[pos2]);
 						cout << "La respuesta es: " << respuesta;
+						fichero << cont << " (" << Racionales[pos1]->getNumerador() << "/ " << Racionales[pos2]->getDenominador() << "< + > (" << Radicales[pos2]->getCoeficiente() << ")(" << Radicales[pos2]->getRadicando() << ")(1/"+Radicales[pos2]->getIndice() << ") = " << respuesta << endl;
 
 
 
@@ -314,10 +319,59 @@ int main (){
 						int entero;
 						cout << "Ingrese el entero con el que lo desea dividir: ";
 						cin >> entero;
-						respuesta =  Racionales[pos1]->RestarInt(entero);
+						respuesta =  Racionales[pos1]->DividirInt(entero);
+						cout << "La respuesta es: " << respuesta;
+					}//FIN OPERACION DIVISION RADICALES	
+
+					}else if (op==2){
+
+					cout << "------------RADICALES-------\n";
+					for (int i = 0; i < Radicales.size(); ++i)
+						{
+							cout << "pos: " << i << " Coeficiente: " << Radicales[i]->getCoeficiente() << " Radicando: " << Radicales[i]->getRadicando() << " Indice: " << Radicales[i]->getIndice() << endl;
+						}
+
+						cout << "\nEscoja una posicion:";
+						cin >> pos1;
+						cout << "\nCon que lo desea Dividir? \n1.Elemento del vector de Radicales\n2.Elemento del vector de Racionales\n3.Entero o Decimal: ";
+						cin >> op2;
+
+						if (op2==1){
+							for (int i = 0; i < Radicales.size(); ++i)
+							{
+								cout << "pos: " << i << " Coeficiente: " << Radicales[i]->getCoeficiente() << " Radicando: " << Radicales[i]->getRadicando() << " Indice: " << Radicales[i]->getIndice() << endl;
+							}
+
+							cout << "\nEscoja una posicion:";
+							cin >> pos2;
+
+							respuesta = Radicales[pos1]->Dividir(Radicales[pos2]);
+							cout << "La respuesta es: " << respuesta;
+
+
+
+					} else if (op2==2){
+						for (int i = 0; i < Racionales.size(); ++i)
+						{
+							cout << i << " Numerador: " << Racionales[i]->getNumerador() << " Denominador: " << Racionales[i]->getDenominador() << endl;
+						}
+
+						cout << "\nEscoja una posicion:";
+						cin >> pos2;
+
+						respuesta = Radicales[pos1]->Dividir(Racionales[pos2]);
+						cout << "La respuesta es: " << respuesta;					
+						
+					}else{
+						int entero;
+						cout << "Ingrese el entero con el que lo desea Dividir: ";
+						cin >> entero;
+						cout << Radicales.size();
+						respuesta =  Radicales[pos1]->DividirInt(entero);
 						cout << "La respuesta es: " << respuesta;
 						
-					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES RESTA
+					}//FIN OPERACIÓN CON NUMEROS REALES RADICALES
+
 				}
 			break;	
 			}//FIN CASE 5, DIVISION
@@ -328,6 +382,7 @@ int main (){
 		cout << endl << "Desea continuar en el programa? (s/n): ";
 		cin >> resp;
 	}//fin while
+	fichero.close();
 
 	return 0;
 }

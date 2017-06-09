@@ -180,6 +180,18 @@ string Racional::Dividir(Real* num){
 }
 
 string Racional::DividirInt(int num){
+	int numer, denom;
+	stringstream ss;
+	stringstream convert;
+	string respuesta;
+	numer = this->Numerador;
+    denom = this->getDenominador()*num;
+    convert << numer;
+    ss << denom;
+    respuesta = convert.str() + "/" + ss.str();	
 
+    return respuesta;
 }
+
+
 
